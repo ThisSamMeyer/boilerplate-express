@@ -24,11 +24,8 @@ app.get('/json', (req, res) => {
             "message": "Hello json"
         })
     }
-
 })
 
 console.log("Hello World");
-
-
 
  module.exports = app;
