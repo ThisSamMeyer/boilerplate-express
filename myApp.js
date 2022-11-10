@@ -5,7 +5,7 @@ let absolutePath = __dirname + "/views/index.html"
 
 app.get('/', (req,res) => {
     // res.send('Hello Express')
-    res.sendFile(absolutePath)
+    res.sendFile(__dirname + "/views/index.html")
 })
 
 console.log("Hello World")
