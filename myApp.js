@@ -1,42 +1,48 @@
 // Basic Node and Express
 
-let express = require('express')
-let app = express()
+let express = require('express');
+let app = express();
 
 // #6a - Use the .env File
-require('dotenv').config()
+require('dotenv').config();
+
+// #11a - Use body-parser to Parse POST Requests
+let bodyParser = require('body-parser');
 
 // #4 - Serve Static Assets
-app.use("/public", express.static(__dirname + "/public"))
+app.use("/public", express.static(__dirname + "/public"));
+
+// #11b - Use body-parser to Parse POST Requests
+app.use(bodyParser.urlencoded({ extended: false } ));
 
 // #7 - Implement a Root-Level Request Logger Middleware
 app.use((req, res, next) => {
-    console.log(`${req.method} ${req.path} - ${req.ip}`)
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
-})
+});
 
 app.get('/', (req, res) => {
     // #2 - Start a Working Express Server
-    // res.send('Hello Express')
+    // res.send('Hello Express');
 
     // #3 - Serve an HTML File
-    res.sendFile(__dirname + "/views/index.html")
-})
+    res.sendFile(__dirname + "/views/index.html");
+});
 
 app.get('/json', (req, res) => {
-    // res.json( { "message": "Hello json" } )  // #5 - Serve JSON on a Specific Route
+    // res.json( { "message": "Hello json" } );  // #5 - Serve JSON on a Specific Route
 
     // #6b - Use the .env File
     if (process.env.MESSAGE_STYLE === "uppercase"){
         res.json({
             "message": "Hello json".toUpperCase()
-        })
+        });
     }else {
         res.json({
             "message": "Hello json"
-        })
+        });
     }
-})
+});
 
 // #8 - Chain Middleware to Create a Time Server
 app.get('/now', (req, res, next) => {
@@ -54,8 +60,8 @@ app.get('/:word/echo', (req, res) => {
 // #10 - Get Query Parameter Input from the Client
 app.get(`/name`, (req, res) => {
     let { first: firstName, last: lastName } = req.query;
-    res.json( { "name": `${firstName} ${lastName}` } )
-})
+    res.json( { "name": `${firstName} ${lastName}` } );
+});
 
 console.log("Hello World"); // #1 - Meet the Node Console
 
