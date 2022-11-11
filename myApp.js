@@ -52,8 +52,9 @@ app.get('/:word/echo', (req, res) => {
 });
 
 // #10 - Get Query Parameter Input from the Client
-app.get(`/name?first=firstname&last=lastname`, (req, res) => {
-    res.json( { "name": `${firstname} ${lastname}` } )
+app.get(`/name`, (req, res) => {
+    let { first: firstName, last: lastName } = req.query;
+    res.json( { "name": `${firstName} ${lastName}` } )
 })
 
 console.log("Hello World"); // #1 - Meet the Node Console
