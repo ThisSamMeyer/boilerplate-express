@@ -34,13 +34,9 @@ app.get('/json', (req, res) => {
 
     // #6b - Use the .env File
     if (process.env.MESSAGE_STYLE === "uppercase"){
-        res.json({
-            "message": "Hello json".toUpperCase()
-        });
+        res.json({ "message": "Hello json".toUpperCase() });
     }else {
-        res.json({
-            "message": "Hello json"
-        });
+        res.json({ "message": "Hello json" });
     }
 });
 
@@ -63,6 +59,13 @@ app.get(`/name`, (req, res) => {
     res.json( { "name": `${firstName} ${lastName}` } );
 });
 
-console.log("Hello World"); // #1 - Meet the Node Console
+// #12 - Get Data from POST Requests
+app.post('/name', (req, res) => {
+    let { first: firstName, last: lastName } = req.body;
+    res.json({ "name": `${firstName} ${lastName}` });
+});
+
+// #1 - Meet the Node Console
+console.log("Hello World");
 
  module.exports = app;
